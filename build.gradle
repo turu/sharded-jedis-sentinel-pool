@@ -1,48 +1,32 @@
-apply plugin: 'basdle'
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'idea'
 
 buildscript {
     repositories {
         mavenLocal()
-        maven {
-            url baseMavenRepoAllUrl
-            credentials {
-                username baseMavenRepoAllUser
-                password baseMavenRepoAllPassword
-            }
-        }
         jcenter()
-    }
-
-    dependencies {
-        classpath "com.getbase.basdle:basdle:$basdleVersion"
     }
 }
 
 version = '0.2'
 group = 'redis.clients'
 
-versions.with {
-    guava = '18.0'
-    jedis = '2.7.0'
-    mockito = '1.8.5'
-    junit = '4.11'
-    commonspool2 = '2.3'
-    embeddedredis = '0.5.3.16a1e6d'
-    festassert = '1.4'
-    guava_retrying = '2.0.0'
+repositories {
+    mavenCentral()
 }
 
 dependencies {
     compile (
-        "com.google.guava:guava:$versions.guava",
-        "redis.clients:jedis:$versions.jedis",
-        "org.apache.commons:commons-pool2:$versions.commonspool2",
-        "com.github.rholder:guava-retrying:$versions.guava_retrying"
+        "com.google.guava:guava:18.0",
+        "redis.clients:jedis:2.7.0",
+        "org.apache.commons:commons-pool2:2.3",
+        "com.github.rholder:guava-retrying:2.0.0"
     )
     testCompile (
-        "org.mockito:mockito-all:$versions.mockito",
-        "junit:junit:$versions.junit",
-        "org.easytesting:fest-assert:$versions.festassert",
-        "redis.embedded:embedded-redis:$versions.embeddedredis",
+        "org.mockito:mockito-all:1.8.5",
+        "junit:junit:4.11",
+        "org.easytesting:fest-assert:1.4",
+        "com.github.kstyrc:embedded-redis:0.6",
     )
 }
